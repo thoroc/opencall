@@ -3,7 +3,7 @@
 namespace OnCall\AdminBundle\Controller;
 
 use OnCall\AdminBundle\Model\Controller;
-use OnCall\AdminBundle\Model\MenuHandler;
+use OnCall\AdminBundle\Menu\MenuHandler;
 use Symfony\Component\HttpFoundation\Response;
 use OnCall\AdminBundle\Entity\Number;
 use OnCall\AdminBundle\Entity\Client;
@@ -105,15 +105,15 @@ class NumberController extends Controller
         return $this->render(
             $template,
             array(
-                'user' => $user,
-                'sidebar_menu' => MenuHandler::getMenu($role_hash, 'number', $client_id),
-                'clients' => $clients,
-                'numbers' => $numbers,
-                'types' => $types,
-                'type' => $type,
-                'usage' => $usage,
-                'client' => $client,
-                'client_id' => $client_id
+                'user'          => $user,
+                'sidebar_menu'  => MenuHandler::getMenu($role_hash, 'number', $client_id),
+                'clients'       => $clients,
+                'numbers'       => $numbers,
+                'types'         => $types,
+                'type'          => $type,
+                'usage'         => $usage,
+                'client'        => $client,
+                'client_id'     => $client_id
             )
         );
     }
@@ -125,7 +125,7 @@ class NumberController extends Controller
 
     public function clientIndexAction()
     {
-        return $this->genericIndex($this->getClientID());
+        return $this->genericIndex( $this->getClientID() );
     }
 
     protected function updateNumber(Number $num, $data)

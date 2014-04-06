@@ -1,6 +1,6 @@
 <?php
 
-namespace OnCall\AdminBundle\Model;
+namespace OnCall\AdminBundle\Menu;
 
 class MenuHandler
 {
@@ -9,7 +9,7 @@ class MenuHandler
         $menu_group = new MenuGroup();
 
         // admin menu
-        if (isset($role_hash['ROLE_ADMIN']))
+        if( isset( $role_hash['ROLE_ADMIN'] ))
         {
             $menu_group->addItem(new MenuItem(
                 'account',
@@ -25,7 +25,7 @@ class MenuHandler
             ));
         }
         // normal user menu
-        else 
+        else
         {
             if ($client_id != null)
             {
@@ -77,14 +77,12 @@ class MenuHandler
                     '/client/' . $client_id . '/numbers',
                     'icon-th'
                 ));
-                /*
                 $menu_group->addItem(new MenuItem(
                     'quotas',
                     'Usage & Billing',
                     '/client/' . $client_id . '/billing',
                     'icon-tasks'
                 ));
-                */
             }
         }
 

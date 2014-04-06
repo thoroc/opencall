@@ -3,7 +3,7 @@
 namespace OnCall\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use OnCall\AdminBundle\Model\MenuHandler;
+use OnCall\AdminBundle\Menu\MenuHandler;
 
 class MainController extends Controller
 {

@@ -3,7 +3,7 @@
 namespace OnCall\AdminBundle\Controller;
 
 use OnCall\AdminBundle\Model\Controller;
-use OnCall\AdminBundle\Model\MenuHandler;
+use OnCall\AdminBundle\Menu\MenuHandler;
 use OnCall\AdminBundle\Model\AggregateFilter;
 use OnCall\AdminBundle\Model\Timezone;
 use Plivo\HangupCause;

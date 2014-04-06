@@ -1,6 +1,6 @@
 <?php
 
-namespace OnCall\AdminBundle\Model;
+namespace OnCall\AdminBundle\Menu;
 
 class MenuGroup implements \Iterator
 {

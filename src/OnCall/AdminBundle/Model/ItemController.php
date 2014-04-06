@@ -5,6 +5,7 @@ namespace OnCall\AdminBundle\Model;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use OnCall\AdminBundle\Entity\Item;
+use OnCall\AdminBundle\Menu\MenuHandler;
 use DateTime;
 
 abstract class ItemController extends Controller

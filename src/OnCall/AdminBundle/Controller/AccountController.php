@@ -2,7 +2,7 @@
 
 namespace OnCall\AdminBundle\Controller;
 
-use OnCall\AdminBundle\Model\MenuHandler;
+use OnCall\AdminBundle\Menu\MenuHandler;
 use Symfony\Component\HttpFoundation\Response;
 use OnCall\AdminBundle\Entity\User;
 use OnCall\AdminBundle\Entity\Client;
@@ -24,6 +24,10 @@ class AccountController extends Controller
             ->createQuery($dql)
             ->setParameter('role', 'a:0:{}');
         $accounts = $query->getResult();
+        // replace the above by a repo method
+//         $accounts = $this->getDoctrine->getManager()
+//                          ->getRepository( 'onCallAdminBundle:User' )
+//                          ->getUserWithRoles();
 
         // get role hash for menu
         $user = $this->getUser();
@@ -39,7 +43,7 @@ class AccountController extends Controller
             $user_id = $ac->getUserID();
             if (!isset($user_id))
                 $aggr_count[$user_id] = array();
-                
+
             $aggr_count[$user_id][] = $ac;
         }
 
@@ -60,7 +64,7 @@ class AccountController extends Controller
     public function createAction()
     {
         // add user
-        try 
+        try
         {
             $mgr = $this->get('fos_user.user_manager');
             $user = $mgr->createUser();

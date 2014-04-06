@@ -8,7 +8,6 @@ use OnCall\AdminBundle\Model\Timezone;
 use DateTime;
 use DateTimeZone;
 
-
 class Controller extends BaseController
 {
     public function addFlash($type, $message)
@@ -47,7 +46,7 @@ class Controller extends BaseController
         // admin
         if ($this->get('security.context')->isGranted('ROLE_PREVIOUS_ADMIN'))
             return $client;
-            
+
         // inactive
         if ($client->isInactive())
             throw $this->createNotFoundException('Client not found.');

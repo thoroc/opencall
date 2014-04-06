@@ -4,7 +4,7 @@ namespace OnCall\AdminBundle\Controller;
 
 use OnCall\AdminBundle\Model\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use OnCall\AdminBundle\Model\MenuHandler;
+use OnCall\AdminBundle\Menu\MenuHandler;
 use OnCall\AdminBundle\Model\Timezone;
 use OnCall\AdminBundle\Entity\Client;
 use OnCall\AdminBundle\Model\ClientStatus;
@@ -97,7 +97,7 @@ class ClientController extends Controller
     {
         $data = $this->getRequest()->request->all();
         $em = $this->getDoctrine()->getManager();
-        
+
         $user = $this->getUser();
 
         $client = new Client();
