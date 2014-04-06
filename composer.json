@@ -11,6 +11,10 @@
         "symfony/symfony": "2.3.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.2.*",
+	"doctrine/migrations": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "doctrine/data-fixtures" : "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
         "twig/extensions": "1.0.*",
         "symfony/assetic-bundle": "2.3.*",
         "symfony/swiftmailer-bundle": "2.3.*",
@@ -19,12 +23,21 @@
         "sensio/distribution-bundle": "2.3.*",
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
+        "jms/security-extra-bundle": "dev-master",
+        "jms/di-extra-bundle": "dev-master",
+        "jms/serializer-bundle": "dev-master",
+        "kriswallsmith/assetic": "1.1.*@dev",
+        "gedmo/doctrine-extensions": "master-dev",
+        "stof/doctrine-extensions-bundle": "dev-master",
         "incenteev/composer-parameter-handler": "~2.0",
         "fusesource/stomp-php" : "2.0",
         "predis/predis" : "v0.8.4",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "cboden/Ratchet": "0.3.*",
-        "react/zmq": "0.2.*"
+        "react/zmq": "0.2.*",
+        "elao/web-profiler-extra-bundle" : "dev-master",
+        "leaseweb/version-information-bundle": "dev-master",
+        "raulfraile/ladybug-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
@@ -47,6 +60,7 @@
     },
     "minimum-stability": "stable",
     "extra": {
+        "symfony-assets-install": "symlink",
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
         "incenteev-parameters": {
