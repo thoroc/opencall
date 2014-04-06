@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'libphonenumber' => array($vendorDir . '/giggsey/libphonenumber-for-php/src'),
     'Twig_Extensions_' => array($vendorDir . '/twig/extensions/lib'),
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Symfony\\Component\\Icu\\' => array($vendorDir . '/symfony/icu'),
@@ -27,6 +28,7 @@ return array(
     'Predis' => array($vendorDir . '/predis/predis/lib'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src'),
     'PhpCollection' => array($vendorDir . '/phpcollection/phpcollection/src'),
+    'Misd\\PhoneNumberBundle' => array($vendorDir . '/misd/phone-number-bundle'),
     'Metadata\\' => array($vendorDir . '/jms/metadata/src'),
     'Lsw\\VersionInformationBundle' => array($vendorDir . '/leaseweb/version-information-bundle'),
     'Ladybug\\Theme' => array($vendorDir . '/raulfraile/ladybug-themes', $vendorDir . '/raulfraile/ladybug/data/themes'),
