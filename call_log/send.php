@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use OnCall\Bundle\AdminBundle\Entity\CallLog;
+use OnCall\AdminBundle\Entity\CallLog;
 
 $data = array(
     'topic' => 'client:20',

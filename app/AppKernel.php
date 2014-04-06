@@ -23,7 +23,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
-            new OnCall\Bundle\AdminBundle\OnCallAdminBundle(),
+            new OnCall\AdminBundle\OnCallAdminBundle(),
             // new OnCall\Bundle\UserBundle\OnCallUserBundle(),
         );
 

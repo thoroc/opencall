@@ -2,7 +2,7 @@
 
 namespace Plivo;
 
-use OnCall\Bundle\AdminBundle\Model\ItemStatus;
+use OnCall\AdminBundle\Model\ItemStatus;
 
 class Router
 {

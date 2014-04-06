@@ -6,7 +6,7 @@ use Plivo\Log\Entry as LogEntry;
 use Plivo\Log\Pusher as LogPusher;
 use Plivo\Log\Repository as LogRepository;
 use PDO;
-use OnCall\Bundle\AdminBundle\Model\Timezone;
+use OnCall\AdminBundle\Model\Timezone;
 
 class Answer
 {

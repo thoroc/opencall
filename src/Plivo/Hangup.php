@@ -13,7 +13,7 @@ use Plivo\AccountCounter\Repository as ACRepo;
 use Plivo\AccountCounter\Entry as ACEntry;
 use Plivo\Alert\Sender as AlertSender;
 use Plivo\Alert\Repository as AlertRepo;
-use OnCall\Bundle\AdminBundle\Model\Timezone;
+use OnCall\AdminBundle\Model\Timezone;
 
 class Hangup extends Lockable
 {
