@@ -11,7 +11,7 @@ class Response
         $this->actions = array();
     }
 
-    public function addAction(Action $action)
+    public function addAction( Action $action )
     {
         $this->actions[] = $action;
     }
@@ -23,8 +23,7 @@ class Response
 
         // response
         $xml .= '<Response>';
-        foreach ($this->actions as $act)
-            $xml .= $act->renderXML();
+        foreach( $this->actions as $act ) $xml .= $act->renderXML();
         $xml .= '</Response>';
 
         return $xml;

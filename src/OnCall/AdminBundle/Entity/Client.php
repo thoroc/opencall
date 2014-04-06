@@ -80,50 +80,50 @@ class Client extends Item
     }
 
     // begin setters
-    public function setUser(User $user)
+    public function setUser( User $user )
     {
         $this->user = $user;
         $this->user_id = $user->getID();
         return $this;
     }
 
-    public function setTimezone($timezone)
+    public function setTimezone( $timezone )
     {
         $this->timezone = $timezone;
         return $this;
     }
 
-    public function setAlertEnabled($enable = true)
+    public function setAlertEnabled( $enable = true )
     {
         $this->alert_enable = $enable;
         return $this;
     }
 
-    public function setAlertEmail($email)
+    public function setAlertEmail( $email )
     {
         $this->alert_email = $email;
         return $this;
     }
 
-    public function setAlertCampaignID($cid)
+    public function setAlertCampaignID( $cid )
     {
         $this->alert_cid = $cid;
         return $this;
     }
 
-    public function setAlertAdGroupID($adgid)
+    public function setAlertAdGroupID( $adgid )
     {
         $this->alert_adgid = $adgid;
         return $this;
     }
 
-    public function setAlertAdvertID($adid)
+    public function setAlertAdvertID( $adid )
     {
         $this->alert_adid = $adid;
         return $this;
     }
-    // end setters
 
+    // end setters
     // begin getters
     public function getUser()
     {
@@ -142,7 +142,7 @@ class Client extends Item
 
     public function getNumberCount()
     {
-        return count($this->numbers);
+        return count( $this->numbers );
     }
 
     public function getCampaigns()
@@ -152,7 +152,7 @@ class Client extends Item
 
     public function getCampaignCount()
     {
-        return count($this->campaigns);
+        return count( $this->campaigns );
     }
 
     public function getChildren()
@@ -172,8 +172,7 @@ class Client extends Item
 
     public function isAlertEnabled()
     {
-        if ($this->alert_enable)
-            return true;
+        if( $this->alert_enable ) return true;
         return false;
     }
 
@@ -196,6 +195,7 @@ class Client extends Item
     {
         return $this->alert_adid;
     }
+
     // end getters
 
     public function getData()

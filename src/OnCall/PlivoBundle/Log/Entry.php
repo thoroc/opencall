@@ -33,178 +33,176 @@ class Entry
 
     public function __construct()
     {
-        $this->date_in = new DateTime('now', new DateTimeZone('Asia/Hong_Kong'));
+        $this->date_in = new DateTime( 'now', new DateTimeZone( 'Asia/Hong_Kong' ) );
         $this->b_hangup_cause = '';
         $this->b_status = '';
         $this->audio_record = null;
     }
 
-    public static function createFromMessage(Message $msg, $use_hangup = true)
+    public static function createFromMessage( Message $msg, $use_hangup = true )
     {
         $num_data = $msg->getNumberData();
 
-        if ($use_hangup)
-            $data = $msg->getHangupParams();
-        else
-            $data = $msg->getAnswerParams();
+        if( $use_hangup ) $data = $msg->getHangupParams();
+        else $data = $msg->getAnswerParams();
 
         $entry = new self();
 
         // number data
-        $entry->setClientID($num_data['client_id'])
-            ->setCampaignID($num_data['campaign_id'])
-            ->setAdGroupID($num_data['adgroup_id'])
-            ->setAdvertID($num_data['advert_id'])
-            ->setDestinationNumber($num_data['destination']);
+        $entry->setClientID( $num_data['client_id'] )
+                ->setCampaignID( $num_data['campaign_id'] )
+                ->setAdGroupID( $num_data['adgroup_id'] )
+                ->setAdvertID( $num_data['advert_id'] )
+                ->setDestinationNumber( $num_data['destination'] );
 
         // data
-        $entry->setCallID($data->getUniqueID())
-            ->setOriginNumber($data->getFrom())
-            ->setDialledNumber($data->getTo())
-            ->setDuration($data->getDuration())
-            ->setBillDuration($data->getBillDuration())
-            ->setBillRate($data->getBillRate())
-            ->setStatus($data->getStatus())
-            ->setHangupCause($data->getHangupCause());
+        $entry->setCallID( $data->getUniqueID() )
+                ->setOriginNumber( $data->getFrom() )
+                ->setDialledNumber( $data->getTo() )
+                ->setDuration( $data->getDuration() )
+                ->setBillDuration( $data->getBillDuration() )
+                ->setBillRate( $data->getBillRate() )
+                ->setStatus( $data->getStatus() )
+                ->setHangupCause( $data->getHangupCause() );
 
         // callback data
         $cb_data = $msg->getCallbackParams();
-        if ($cb_data != null)
+        if( $cb_data != null )
         {
-            $entry->setBStatus($cb_data->getBStatus())
-                ->setBHangupCause($cb_data->getBHangupCause());
+            $entry->setBStatus( $cb_data->getBStatus() )
+                    ->setBHangupCause( $cb_data->getBHangupCause() );
         }
 
-        if ($use_hangup)
+        if( $use_hangup )
         {
-            $entry->setDateStart(new DateTime($data->getStartTime()))
-                ->setDateEnd(new DateTime($data->getEndTime()));
+            $entry->setDateStart( new DateTime( $data->getStartTime() ) )
+                    ->setDateEnd( new DateTime( $data->getEndTime() ) );
         }
         else
         {
             // use date in as date start if answer
-            $entry->setDateStart($entry->getDateIn())
-                ->setDuration(0)
-                ->setHangupCause('');
+            $entry->setDateStart( $entry->getDateIn() )
+                    ->setDuration( 0 )
+                    ->setHangupCause( '' );
         }
 
 
         // response xml
-        $entry->setResponseXML($msg->getResponseXML());
+        $entry->setResponseXML( $msg->getResponseXML() );
 
         return $entry;
     }
 
     // setters
-    public function setCallID($call_id)
+    public function setCallID( $call_id )
     {
         $this->call_id = $call_id;
         return $this;
     }
 
-    public function setOriginNumber($num)
+    public function setOriginNumber( $num )
     {
         $this->origin_number = $num;
         return $this;
     }
 
-    public function setDialledNumber($num)
+    public function setDialledNumber( $num )
     {
         $this->dialled_number = $num;
         return $this;
     }
 
-    public function setDestinationNumber($num)
+    public function setDestinationNumber( $num )
     {
         $this->destination_number = $num;
         return $this;
     }
 
-    public function setDateStart(DateTime $date)
+    public function setDateStart( DateTime $date )
     {
         $this->date_start = $date;
         return $this;
     }
 
-    public function setDateEnd(DateTime $date)
+    public function setDateEnd( DateTime $date )
     {
         $this->date_end = $date;
         return $this;
     }
 
-    public function setDuration($duration)
+    public function setDuration( $duration )
     {
         $this->duration = $duration;
         return $this;
     }
 
-    public function setBillDuration($duration)
+    public function setBillDuration( $duration )
     {
         $this->bill_duration = $duration;
         return $this;
     }
 
-    public function setBillRate($rate)
+    public function setBillRate( $rate )
     {
         $this->bill_rate = $rate;
         return $this;
     }
 
-    public function setStatus($status)
+    public function setStatus( $status )
     {
         $this->status = $status;
         return $this;
     }
 
-    public function setHangupCause($cause)
+    public function setHangupCause( $cause )
     {
         $this->hangup_cause = $cause;
         return $this;
     }
 
-    public function setAdvertID($id)
+    public function setAdvertID( $id )
     {
         $this->advert_id = $id;
         return $this;
     }
 
-    public function setAdGroupID($id)
+    public function setAdGroupID( $id )
     {
         $this->adgroup_id = $id;
         return $this;
     }
 
-    public function setCampaignID($id)
+    public function setCampaignID( $id )
     {
         $this->campaign_id = $id;
         return $this;
     }
 
-    public function setClientID($id)
+    public function setClientID( $id )
     {
         $this->client_id = $id;
         return $this;
     }
 
-    public function setResponseXML($xml)
+    public function setResponseXML( $xml )
     {
         $this->response_xml = $xml;
         return $this;
     }
 
-    public function setBHangupCause($cause)
+    public function setBHangupCause( $cause )
     {
         $this->b_hangup_cause = $cause;
         return $this;
     }
 
-    public function setBStatus($status)
+    public function setBStatus( $status )
     {
         $this->b_status = $status;
         return $this;
     }
 
-    public function setAudioRecord($audio)
+    public function setAudioRecord( $audio )
     {
         $this->audio_record = $audio;
         return $this;
@@ -303,29 +301,26 @@ class Entry
 
     public function getOriginFormatted()
     {
-        if ($this->origin_number == 0)
-            return 'Anonymous';
+        if( $this->origin_number == 0 ) return 'Anonymous';
 
         $nf = new NumberFormatter();
-        return $nf->format($this->origin_number);
+        return $nf->format( $this->origin_number );
     }
 
     public function getDialledFormatted()
     {
-        if ($this->dialled_number == null)
-            return '';
+        if( $this->dialled_number == null ) return '';
 
         $nf = new NumberFormatter();
-        return $nf->format($this->dialled_number);
+        return $nf->format( $this->dialled_number );
     }
 
     public function getDestinationFormatted()
     {
-        if ($this->destination_number == null)
-            return '';
+        if( $this->destination_number == null ) return '';
 
         $nf = new NumberFormatter();
-        return $nf->format($this->destination_number);
+        return $nf->format( $this->destination_number );
     }
 
     public function getBStatus()
@@ -345,7 +340,7 @@ class Entry
 
     public function isFailed()
     {
-        switch($this->status)
+        switch( $this->status )
         {
             case 'busy':
             case 'failed':
@@ -355,13 +350,11 @@ class Entry
                 return true;
         }
 
-        $hc = strtolower($this->hangup_cause);
-        if (!empty($hc) && $hc != 'normal_clearing')
-            return true;
+        $hc = strtolower( $this->hangup_cause );
+        if( !empty( $hc ) && $hc != 'normal_clearing' ) return true;
 
-        $bhc = strtolower($this->b_hangup_cause);
-        if (!empty($bhc) && $bhc != 'normal_clearing')
-            return true;
+        $bhc = strtolower( $this->b_hangup_cause );
+        if( !empty( $bhc ) && $bhc != 'normal_clearing' ) return true;
 
         return false;
     }
@@ -394,25 +387,21 @@ class Entry
         );
 
         // date start
-        if ($this->date_start != null)
-            $data['date_start'] = array(
-                'time' => $this->date_start->format('H:i:s'),
-                'date' => $this->date_start->format('d M')
+        if( $this->date_start != null ) $data['date_start'] = array(
+                'time' => $this->date_start->format( 'H:i:s' ),
+                'date' => $this->date_start->format( 'd M' )
             );
-        else
-            $data['date_start'] = array(
+        else $data['date_start'] = array(
                 'time' => '',
                 'date' => ''
             );
 
         // date end
-        if ($this->date_end != null)
-            $data['date_end'] = array(
-                'time' => $this->date_end->format('H:i:s'),
-                'date' => $this->date_end->format('d M')
+        if( $this->date_end != null ) $data['date_end'] = array(
+                'time' => $this->date_end->format( 'H:i:s' ),
+                'date' => $this->date_end->format( 'd M' )
             );
-        else
-            $data['date_end'] = array(
+        else $data['date_end'] = array(
                 'time' => '',
                 'date' => ''
             );

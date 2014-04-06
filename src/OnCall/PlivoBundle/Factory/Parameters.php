@@ -16,11 +16,9 @@ class Parameters
     protected $hangup_cause;
     protected $duration;
     protected $bill_duration;
-
     // params from callback
     protected $b_hangup_cause;
     protected $b_status;
-
     // other params based on old answer / hangup scripts
     protected $bill_rate;
     protected $event;
@@ -29,40 +27,36 @@ class Parameters
     protected $answer_time;
     protected $end_time;
 
-    public function __construct($post)
+    public function __construct( $post )
     {
         // TODO: figure out which ones are required and not
 
-        $this->set('unique_id', $post, 'CallUUID')
-            ->set('from', $post, 'From')
-            ->set('to', $post, 'To')
-            ->set('forward_from', $post, 'ForwardedFrom')
-            ->set('status', $post, 'CallStatus')
-            ->set('direction', $post, 'Direction')
-            ->set('leg_unique_id', $post, 'ALegUUID')
-            ->set('leg_req_unique_id', $post, 'ALegRequestUUID')
-            ->set('hangup_cause', $post, 'HangupCause')
-            ->set('duration', $post, 'Duration')
-            ->set('bill_duration', $post, 'BillDuration')
-
-            ->set('b_hangup_cause', $post, 'DialBLegHangupCause')
-            ->set('b_status', $post, 'DialBLegStatus')
-
-            ->set('bill_rate', $post, 'BillRate')
-            ->set('event', $post, 'Event')
-            ->set('hangup_id', $post, 'ScheduledHangupId')
-            ->set('start_time', $post, 'StartTime')
-            ->set('answer_time', $post, 'AnswerTime')
-            ->set('end_time', $post, 'EndTime');
+        $this->set( 'unique_id', $post, 'CallUUID' )
+                ->set( 'from', $post, 'From' )
+                ->set( 'to', $post, 'To' )
+                ->set( 'forward_from', $post, 'ForwardedFrom' )
+                ->set( 'status', $post, 'CallStatus' )
+                ->set( 'direction', $post, 'Direction' )
+                ->set( 'leg_unique_id', $post, 'ALegUUID' )
+                ->set( 'leg_req_unique_id', $post, 'ALegRequestUUID' )
+                ->set( 'hangup_cause', $post, 'HangupCause' )
+                ->set( 'duration', $post, 'Duration' )
+                ->set( 'bill_duration', $post, 'BillDuration' )
+                ->set( 'b_hangup_cause', $post, 'DialBLegHangupCause' )
+                ->set( 'b_status', $post, 'DialBLegStatus' )
+                ->set( 'bill_rate', $post, 'BillRate' )
+                ->set( 'event', $post, 'Event' )
+                ->set( 'hangup_id', $post, 'ScheduledHangupId' )
+                ->set( 'start_time', $post, 'StartTime' )
+                ->set( 'answer_time', $post, 'AnswerTime' )
+                ->set( 'end_time', $post, 'EndTime' );
     }
 
-    protected function set($prop, $var, $name)
+    protected function set( $prop, $var, $name )
     {
         // set property if variable exists
-        if (isset($var[$name]))
-            $this->$prop = $var[$name];
-        else
-            $this->$prop = '';
+        if( isset( $var[$name] ) ) $this->$prop = $var[$name];
+        else $this->$prop = '';
 
         return $this;
     }

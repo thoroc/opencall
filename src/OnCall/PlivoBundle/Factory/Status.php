@@ -16,11 +16,11 @@ class Status
     protected $num_status;
     protected $text_status;
 
-    public function __construct($text)
+    public function __construct( $text )
     {
-        $clean_text = strtolower(trim($text));
+        $clean_text = strtolower( trim( $text ) );
         $this->text_status = $clean_text;
-        switch ($clean_text)
+        switch( $clean_text )
         {
             case 'ringing':
                 $this->num_status = self::RINGING;
@@ -61,14 +61,14 @@ class Status
 
     public function isFailed()
     {
-        switch ($this->num_status)
+        switch( $this->num_status )
         {
             case self::BUSY:
             case self::FAILED:
             case self::TIMEOUT:
             case self::NO_ANSWER:
             case self::CANCEL:
-                    return true;
+                return true;
         }
 
         return false;

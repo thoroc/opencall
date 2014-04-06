@@ -33,7 +33,7 @@ class NumberHistory
      */
     protected $date_create;
 
-    public function __construct($num_id, $action)
+    public function __construct( $num_id, $action )
     {
         $this->number_id = $num_id;
         $this->action = $action;
@@ -63,7 +63,7 @@ class NumberHistory
 
     public function getDateCreateFormatted()
     {
-        return $this->date_create->format('m/d/Y H:i');
+        return $this->date_create->format( 'm/d/Y H:i' );
     }
     // end getters
 }

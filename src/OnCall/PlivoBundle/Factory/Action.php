@@ -22,7 +22,7 @@ class Action
     protected $type;
     protected $params;
 
-    public function __construct($type, $params = array())
+    public function __construct( $type, $params = array() )
     {
         $this->type = $type;
         $this->params = $params;
@@ -38,43 +38,39 @@ class Action
         return $this->params;
     }
 
-    protected function escapeXML($string)
+    protected function escapeXML( $string )
     {
-        return htmlspecialchars($string);
+        return htmlspecialchars( $string );
     }
 
     public function renderXML()
     {
-        switch ($this->type)
+        switch( $this->type )
         {
             case self::TYPE_CUSTOM_XML:
                 return $this->params['xml'];
             case self::TYPE_DIAL:
                 // dial
                 $xml = '<Dial';
-                if (isset($this->params['callback_url']))
-                    $xml .= ' callbackUrl="' . $this->params['callback_url'] . '"';
+                if( isset( $this->params['callback_url'] ) ) $xml .= ' callbackUrl="' . $this->params['callback_url'] . '"';
                 $xml .= '>';
                 // number
                 $xml .= '<Number';
-                if (isset($this->params['caller_id']))
-                    $xml .= ' callerId="' . $this->params['caller_id'] . '"';
+                if( isset( $this->params['caller_id'] ) ) $xml .= ' callerId="' . $this->params['caller_id'] . '"';
                 $xml .= '>';
-                $xml .= $this->escapeXML($this->params['number']);
+                $xml .= $this->escapeXML( $this->params['number'] );
                 $xml .= '</Number></Dial>';
                 return $xml;
             case self::TYPE_SPEAK:
                 $xml = '<Speak';
-                if (isset($this->params['language']))
-                    $xml .= ' language="' . $this->params['language'] . '"';
+                if( isset( $this->params['language'] ) ) $xml .= ' language="' . $this->params['language'] . '"';
                 $xml .= '>';
-                $xml .= $this->escapeXML($this->params['text']);
+                $xml .= $this->escapeXML( $this->params['text'] );
                 $xml .= '</Speak>';
                 return $xml;
             case self::TYPE_RECORD:
                 $xml = '<Record';
-                if (isset($this->params['record_url']))
-                    $xml .= ' action="' . $this->params['record_url'] . '"';
+                if( isset( $this->params['record_url'] ) ) $xml .= ' action="' . $this->params['record_url'] . '"';
                 $xml .= ' redirect="false"';
                 $xml .= ' maxLength="1200"';
                 $xml .= ' startOnDialAnswer="true" />';

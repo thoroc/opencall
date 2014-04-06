@@ -13,7 +13,7 @@ class Entry
     protected $call;
     protected $duration;
 
-    public function __construct(DateTime $date_in, $user_id)
+    public function __construct( DateTime $date_in, $user_id )
     {
         $this->date_in = $date_in;
         $this->user_id = $user_id;
@@ -23,25 +23,25 @@ class Entry
         $this->duration = 0;
     }
 
-    public function setClient($count)
+    public function setClient( $count )
     {
         $this->client = $count;
         return $this;
     }
 
-    public function setNumber($count)
+    public function setNumber( $count )
     {
         $this->number = $count;
         return $this;
     }
 
-    public function setCall($count)
+    public function setCall( $count )
     {
         $this->call = $count;
         return $this;
     }
 
-    public function setDuration($count)
+    public function setDuration( $count )
     {
         $this->duration = $count;
         return $this;
@@ -81,11 +81,11 @@ class Entry
     {
         $seconds = $this->duration;
 
-        $hours = floor($seconds / 3600);
+        $hours = floor( $seconds / 3600 );
         $remain = $seconds % 3600;
-        $mins = floor($remain / 60);
+        $mins = floor( $remain / 60 );
         $secs = $remain % 60;
 
-        return sprintf("%d:%02d:%02d", $hours, $mins, $secs);
+        return sprintf( "%d:%02d:%02d", $hours, $mins, $secs );
     }
 }

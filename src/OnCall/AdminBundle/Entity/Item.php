@@ -40,13 +40,13 @@ abstract class Item
     }
 
     // begin setters
-    public function setName($name)
+    public function setName( $name )
     {
         $this->name = $name;
         return $this;
     }
 
-    public function setStatus($status)
+    public function setStatus( $status )
     {
         $this->status = $status;
         return $this;
@@ -55,7 +55,7 @@ abstract class Item
     public function setInactive()
     {
         // do not set children inactive
-        $this->setStatus(ItemStatus::INACTIVE);
+        $this->setStatus( ItemStatus::INACTIVE );
 
         // set unassign number
         $this->unassignNumber();
@@ -66,13 +66,12 @@ abstract class Item
     public function unassignNumber()
     {
         $children = $this->getChildren();
-        foreach ($children as $child)
-            $child->unassignNumber();
+        foreach( $children as $child ) $child->unassignNumber();
 
         return $this;
     }
-    // end setters
 
+    // end setters
     // begin getters
     public function getID()
     {
@@ -91,16 +90,14 @@ abstract class Item
 
     public function isActive()
     {
-        if ($this->status == ItemStatus::ACTIVE)
-            return true;
+        if( $this->status == ItemStatus::ACTIVE ) return true;
 
         return false;
     }
 
     public function isInactive()
     {
-        if ($this->status == ItemStatus::INACTIVE)
-            return true;
+        if( $this->status == ItemStatus::INACTIVE ) return true;
 
         return false;
     }
@@ -112,8 +109,9 @@ abstract class Item
 
     public function getDateCreateFormatted()
     {
-        return $this->date_create->format('d M Y');
+        return $this->date_create->format( 'd M Y' );
     }
+
     // end getters
 
     public function getData()
@@ -130,6 +128,6 @@ abstract class Item
 
     public function jsonify()
     {
-        return json_encode($this->getData());
+        return json_encode( $this->getData() );
     }
 }

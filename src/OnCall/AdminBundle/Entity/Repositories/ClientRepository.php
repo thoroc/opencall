@@ -7,18 +7,18 @@ use Doctrine\ORM\NoResultException;
 
 class ClientRepository extends EntityRepository
 {
-    public function findFirst($user_id)
+    public function findFirst( $user_id )
     {
         try
         {
             $dql = 'select c from OnCallAdminBundle:Client c where c.user_id = :user_id';
             $query = $this->getEntityManager()
-                ->createQuery($dql)
-                ->setParameter('user_id', $user_id)
-                ->setMaxResults(1);
+                    ->createQuery( $dql )
+                    ->setParameter( 'user_id', $user_id )
+                    ->setMaxResults( 1 );
             return $query->getSingleResult();
         }
-        catch (NoResultException $e)
+        catch( NoResultException $e )
         {
             return null;
         }
@@ -31,10 +31,10 @@ class ClientRepository extends EntityRepository
             // get clients, eager load users
             $dql = 'select c,u from OnCallAdminBundle:Client c join c.user u order by u.business_name asc, c.name asc';
             $query = $this->getEntityManager()
-                ->createQuery($dql);
+                    ->createQuery( $dql );
             return $query->getResult();
         }
-        catch (NoResultException $e)
+        catch( NoResultException $e )
         {
             return array();
         }

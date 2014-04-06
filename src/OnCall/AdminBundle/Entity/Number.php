@@ -70,53 +70,53 @@ class Number
      */
     protected $advert;
 
-    public function __construct($id)
+    public function __construct( $id )
     {
         $this->id = $id;
         $this->date_create = new DateTime();
     }
 
     // begin setters
-    public function setType($type)
+    public function setType( $type )
     {
         $this->type = $type;
         return $this;
     }
 
-    public function setProvider($provider)
+    public function setProvider( $provider )
     {
         $this->provider = $provider;
         return $this;
     }
 
-    public function setClient(Client $client)
+    public function setClient( Client $client )
     {
         $this->client = $client;
         $this->client_id = $client->getID();
         return $this;
     }
 
-    public function setPriceBuy($price)
+    public function setPriceBuy( $price )
     {
         // 2 decimal places
-        $this->price_buy = round($price * 100);
+        $this->price_buy = round( $price * 100 );
         return $this;
     }
 
-    public function setPriceResale($price)
+    public function setPriceResale( $price )
     {
         // 2 decimal places
-        $this->price_resale = round($price * 100);
+        $this->price_resale = round( $price * 100 );
         return $this;
     }
 
-    public function setDateAssign(DateTime $date)
+    public function setDateAssign( DateTime $date )
     {
         $this->date_assign = $date;
         return $this;
     }
 
-    public function setDateLastCall(DateTime $datetime)
+    public function setDateLastCall( DateTime $datetime )
     {
         $this->date_lastcall = $datetime;
         return $this;
@@ -130,8 +130,8 @@ class Number
 
         return $this;
     }
-    // end setters
 
+    // end setters
     // begin getters
     public function getID()
     {
@@ -141,7 +141,7 @@ class Number
     public function getIDFormatted()
     {
         $nf = new NumberFormatter();
-        return $nf->format($this->id);
+        return $nf->format( $this->id );
     }
 
     public function getType()
@@ -151,13 +151,12 @@ class Number
 
     public function getTypeText()
     {
-        return NumberType::getName($this->type);
+        return NumberType::getName( $this->type );
     }
 
     public function isInUse()
     {
-        if ($this->client == null)
-            return false;
+        if( $this->client == null ) return false;
 
         return true;
     }
@@ -189,7 +188,7 @@ class Number
 
     public function getPriceBuyFormatted()
     {
-        return number_format($this->getPriceBuy(), 2);
+        return number_format( $this->getPriceBuy(), 2 );
     }
 
     public function getPriceResale()
@@ -199,7 +198,7 @@ class Number
 
     public function getPriceResaleFormatted()
     {
-        return number_format($this->getPriceResale(), 2);
+        return number_format( $this->getPriceResale(), 2 );
     }
 
     public function getDateCreate()
@@ -209,7 +208,7 @@ class Number
 
     public function getDateCreateFormatted()
     {
-        return $this->date_create->format('d M Y');
+        return $this->date_create->format( 'd M Y' );
     }
 
     public function getDateAssign()
@@ -219,9 +218,8 @@ class Number
 
     public function getDateAssignFormatted()
     {
-        if ($this->date_assign == null)
-            return '-';
-        return $this->date_assign->format('d M Y');
+        if( $this->date_assign == null ) return '-';
+        return $this->date_assign->format( 'd M Y' );
     }
 
     public function getDateLastCall()
@@ -231,9 +229,8 @@ class Number
 
     public function getDateLastCallFormatted()
     {
-        if ($this->date_lastcall == null)
-            return '-';
-        return $this->date_lastcall->format('m/d/y H:i');
+        if( $this->date_lastcall == null ) return '-';
+        return $this->date_lastcall->format( 'm/d/y H:i' );
     }
 
     public function getAdvert()
@@ -243,61 +240,54 @@ class Number
 
     public function isAssigned()
     {
-        if ($this->advert == null)
-            return false;
+        if( $this->advert == null ) return false;
 
         return true;
     }
 
     public function getClientFormatted()
     {
-        if ($this->getClient() == null)
-            return '-';
+        if( $this->getClient() == null ) return '-';
         return $this->getClient()->getName();
     }
 
     public function getAdvertFormatted()
     {
-        if ($this->getAdvert() == null)
-            return '-';
+        if( $this->getAdvert() == null ) return '-';
         return $this->getAdvert()->getName();
     }
 
     public function getAdGroupFormatted()
     {
-        if ($this->getAdvert() == null)
-            return '-';
+        if( $this->getAdvert() == null ) return '-';
         return $this->getAdvert()->getAdGroup()->getName();
     }
 
     public function getCampaignFormatted()
     {
-        if ($this->getAdvert() == null)
-            return '-';
+        if( $this->getAdvert() == null ) return '-';
         return $this->getAdvert()->getAdGroup()->getCampaign()->getName();
     }
 
     public function canAssign()
     {
-        if ($this->getAdvert() == null)
-            return true;
+        if( $this->getAdvert() == null ) return true;
 
         return false;
     }
 
     public function getAdGroup()
     {
-        if ($this->getAdvert() == null)
-            return null;
+        if( $this->getAdvert() == null ) return null;
         return $this->getAdvert()->getAdGroup();
     }
 
     public function getCampaign()
     {
-        if ($this->getAdvert() == null)
-            return null;
+        if( $this->getAdvert() == null ) return null;
         return $this->getAdvert()->getAdGroup()->getCampaign();
     }
+
     // end getters
 
     public function jsonify()
@@ -312,6 +302,6 @@ class Number
             'price_resale_formatted' => $this->getPriceResaleFormatted()
         );
 
-        return json_encode($data);
+        return json_encode( $data );
     }
 }

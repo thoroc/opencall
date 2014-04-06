@@ -79,8 +79,8 @@ class HangupCause
     public static function getFailed()
     {
         $failed = static::$causes;
-        unset($failed['NORMAL_CLEARING']);
-        unset($failed['NORMAL_UNSPECIFIED']);
+        unset( $failed['NORMAL_CLEARING'] );
+        unset( $failed['NORMAL_UNSPECIFIED'] );
 
         return $failed;
     }

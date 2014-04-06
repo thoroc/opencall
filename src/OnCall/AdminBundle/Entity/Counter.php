@@ -78,7 +78,6 @@ abstract class Counter
 
     // begin setters
     // end setters
-
     // begin getters
     public function getDateIn()
     {
@@ -87,7 +86,7 @@ abstract class Counter
 
     public function getDateInFormatted()
     {
-        return $this->date_in->format('d M Y');
+        return $this->date_in->format( 'd M Y' );
     }
 
     // counters
@@ -114,22 +113,22 @@ abstract class Counter
     // duration
     public function getDurationFormatted()
     {
-        return $this->formatSeconds($this->duration_secs);
+        return $this->formatSeconds( $this->duration_secs );
     }
 
     public function getDurationAverageSeconds()
     {
         // avoid div by 0
-        if ($this->count_total == 0)
-            return 0;
+        if( $this->count_total == 0 ) return 0;
 
-        return floor($this->duration_secs / $this->counter);
+        return floor( $this->duration_secs / $this->counter );
     }
 
     public function getDurationAverageFormatted()
     {
-        return $this->formatSeconds($this->getDurationAverageSeconds());
+        return $this->formatSeconds( $this->getDurationAverageSeconds() );
     }
+
     // end getters
 
     public function getData()
@@ -148,16 +147,16 @@ abstract class Counter
 
     public function jsonify()
     {
-        return json_encode($this->getData());
+        return json_encode( $this->getData() );
     }
 
-    protected function formatSeconds($seconds)
+    protected function formatSeconds( $seconds )
     {
-        $hours = floor($seconds / 3600);
+        $hours = floor( $seconds / 3600 );
         $remain = $seconds % 3600;
-        $mins = floor($remain / 60);
+        $mins = floor( $remain / 60 );
         $secs = $remain % 60;
 
-        return sprintf("%d:%02d:%02d", $hours, $mins, $secs);
+        return sprintf( "%d:%02d:%02d", $hours, $mins, $secs );
     }
 }
