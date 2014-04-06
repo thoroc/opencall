@@ -31,7 +31,7 @@ $(document).ready(function() {
 <div class="container-fluid">
     <!-- BEGIN PAGE HEADER-->
     <div class="row-fluid">
-        <div class="span12">    
+        <div class="span12">
             <h3 class="page-title">{% trans %}menu.number_management{% endtrans %}
             </h3>
             <ul class="breadcrumb">
@@ -45,7 +45,7 @@ $(document).ready(function() {
 
             {{ flash.display_flash_messages }}
             <!--
-            <button class="btn green" style="margin-bottom: 4px;"  data-toggle="modal" href="#requestNumbers"><i class="icon-plus"></i> Request More Numbers</button> 
+            <button class="btn green" style="margin-bottom: 4px;"  data-toggle="modal" href="#requestNumbers"><i class="icon-plus"></i> Request More Numbers</button>
             <br /><br /><br />
             -->
 
@@ -66,7 +66,7 @@ $(document).ready(function() {
             <br />
 
             <!-- Add Number MODAL -->
-            <form method="post" action="/client/{{ client_id }}/numbers/request">
+            <form method="post" action="{% if app.debug %}app_dev.php{% endif %}/client/{{ client_id }}/numbers/request">
             <div id="requestNumbers" class="modal hide fade" tabindex="-1" data-width="760">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -92,15 +92,15 @@ $(document).ready(function() {
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn">Cancel</button>
                     <input type="submit" class="btn green" value="Request Numbers" />
                 </div>
-            </div> 
+            </div>
             </form>
             <!-- End Add Number MODAL -->
-            
+
             <!-- DELETE Number MODAL -->
             <div id="deleteNumber" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-header">
@@ -119,7 +119,7 @@ $(document).ready(function() {
             </div>
             <!-- END Number MODAL -->
 
-            <form id="assign_form" method="post" action="/account/0/numbers">
+            <form id="assign_form" method="post" action="{% if app.debug %}app_dev.php{% endif %}/account/0/numbers">
             <table class="table-bordered table-striped table-condensed cf">
                 <thead>
                     <tr>
@@ -141,17 +141,17 @@ $(document).ready(function() {
                         <td>{{ num.getIDFormatted }}</td>
                         <td>{{ num.isAssigned ? 'text.yes'|trans : 'text.no'|trans }}</td>
                         {% if num.getAdvert %}
-                            <td><a href="/adgroup/{{ num.getAdGroup.getID }}/adverts">{{ num.getAdvertFormatted }}</a></td>
+                            <td><a href="{% if app.debug %}app_dev.php{% endif %}/adgroup/{{ num.getAdGroup.getID }}/adverts">{{ num.getAdvertFormatted }}</a></td>
                         {% else %}
                             <td>{{ num.getAdvertFormatted }}</td>
                         {% endif %}
                         {% if num.getAdGroup %}
-                            <td><a href="/adgroup/{{ num.getAdGroup.getID }}/adverts">{{ num.getAdGroupFormatted }}</a></td>
+                            <td><a href="{% if app.debug %}app_dev.php{% endif %}/adgroup/{{ num.getAdGroup.getID }}/adverts">{{ num.getAdGroupFormatted }}</a></td>
                         {% else %}
                             <td>{{ num.getAdGroupFormatted }}</td>
                         {% endif %}
                         {% if num.getCampaign %}
-                            <td><a href="/campaign/{{ num.getCampaign.getID }}/adgroups">{{ num.getCampaignFormatted }}</a></td>
+                            <td><a href="{% if app.debug %}app_dev.php{% endif %}/campaign/{{ num.getCampaign.getID }}/adgroups">{{ num.getCampaignFormatted }}</a></td>
                         {% else %}
                             <td>{{ num.getCampaignFormatted }}</td>
                         {% endif %}

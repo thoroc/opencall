@@ -17,7 +17,7 @@
 
 {% block breadcrumb %}
 <li>
-    <a href="/client/{{ parent.getClient.getID }}/campaigns?{{ params_child }}">{{ parent.getClient.getName }}</a>
+    <a href="{% if app.debug %}app_dev.php{% endif %}/client/{{ parent.getClient.getID }}/campaigns?{{ params_child }}">{{ parent.getClient.getName }}</a>
     <i class="icon-angle-right"></i>
 </li>
 <li>

@@ -11,7 +11,7 @@ function filter_redirect()
     var ftype = $('#filter_type').val();
     var fusage = $('#filter_usage').val();
 
-    window.location.replace('/numbers?usage=' + fusage + '&type=' + ftype);
+    window.location.replace('{% if app.debug %}app_dev.php{% endif %}/numbers?usage=' + fusage + '&type=' + ftype);
 }
 
 $(document).ready(function() {
@@ -33,12 +33,12 @@ $(document).ready(function() {
     $('.delete_num').click(function() {
         var num_id = $(this).data('id');
         $('#dnum_id').html(num_id);
-        $('#dnum_form').attr('action', '/number/' + num_id + '/delete');
+        $('#dnum_form').attr('action', '{% if app.debug %}app_dev.php{% endif %}/number/' + num_id + '/delete');
     });
 
     $('#assign_submit').click(function() {
         var acc_id = $('#assign_acc_id').val();
-        $('#assign_form').attr('action', '/account/' + acc_id + '/numbers').submit();
+        $('#assign_form').attr('action', '{% if app.debug %}app_dev.php{% endif %}/account/' + acc_id + '/numbers').submit();
     });
 });
 </script>
@@ -49,16 +49,16 @@ $(document).ready(function() {
 <div class="container-fluid">
     <!-- BEGIN PAGE HEADER-->
     <div class="row-fluid">
-        <div class="span12">    
-    
+        <div class="span12">
+
             <h3 class="page-title">
-                Number Management 
+                Number Management
             </h3>
             {{ flash.display_flash_messages }}
-            <button class="btn green" style="margin-bottom: 4px;"  data-toggle="modal" href="#addNumbers"><i class="icon-plus"></i> Bulk Add Numbers to Pool</button> 
-                            
+            <button class="btn green" style="margin-bottom: 4px;"  data-toggle="modal" href="#addNumbers"><i class="icon-plus"></i> Bulk Add Numbers to Pool</button>
+
             <br /><br /><br />
-            Assign Selected to Client: 
+            Assign Selected to Client:
             <select id="assign_acc_id" class="small m-wrap" tabindex="1" style="margin-bottom: 4px;">
                 <option value="0">-</option>
                 {% for client in clients %}
@@ -66,21 +66,21 @@ $(document).ready(function() {
                 {% endfor %}
             </select>
             <button id="assign_submit" class="btn blue" style="margin-bottom: 4px;" ><i class="m-icon-swapright m-icon-white"></i> Assign</button>
-            
-            <span style="padding-left: 150px;">Filter By Usage:</span> 
+
+            <span style="padding-left: 150px;">Filter By Usage:</span>
             <select id="filter_usage" class="small m-wrap" tabindex="1">
                 <option value="" {{ (usage is sameas('')) ? 'selected="selected"' : '' }}>-</option>
                 <option value="1" {{ (usage is sameas('1')) ? 'selected="selected"' : '' }}>In Use</option>
                 <option value="0" {{ (usage is sameas('0')) ? 'selected="selected"' : '' }}>Not In Use</option>
             </select>
 
-            Filter By Type: 
+            Filter By Type:
             <select id="filter_type" class="small m-wrap" tabindex="1">
                 <option value="">-</option>
                 {% for value,text in types %}
                     <option value="{{ value }}" {{ (type == value) ? 'selected="selected"' : '' }}>{{ text }}</option>
                 {% endfor %}
-            </select>       
+            </select>
             <br />
 
             <!-- Add Number MODAL -->
@@ -129,15 +129,15 @@ $(document).ready(function() {
                             </div>
                         </div>
                     </div>
-            
+
                     <div class="modal-footer">
                         <button type="button" data-dismiss="modal" class="btn">Cancel</button>
                         <input type="submit" class="btn green" value="Add numbers" />
                     </div>
                 </form>
-            </div>                                                          
+            </div>
             <!-- End Add Number MODAL -->
-            
+
             <!-- Edit Number MODAL -->
             <div id="editNumber" class="modal hide fade" tabindex="-1" data-width="760">
                 <div class="modal-header">
@@ -146,7 +146,7 @@ $(document).ready(function() {
 
 
                 </div>
-                <form id="edit_form" method="post" action="/number/0">
+                <form id="edit_form" method="post" action="{% if app.debug %}app_dev.php{% endif %}/number/0">
                 <div class="modal-body">
                     <div class="row-fluid">
                         <div class="span12">
@@ -174,15 +174,15 @@ $(document).ready(function() {
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn">Cancel</button>
                     <input type="submit" class="btn green" value="Save changes" />
                 </div>
                 </form>
-            </div>                                                          
+            </div>
             <!-- End Add Number MODAL -->
-            
+
                         <!-- DELETE Number MODAL -->
                         <div id="deleteNumber" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
@@ -192,13 +192,13 @@ $(document).ready(function() {
 
                             <div class="modal-footer">
                                 <button class="btn pull-left green" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                                <form id="dnum_form" method="post" action="number/0/delete">
+                                <form id="dnum_form" method="post" action="{% if app.debug %}app_dev.php{% endif %}/number/0/delete">
                                 <input type="submit" class="btn red" value="Delete Number" />
                                 </form>
                             </div>
                         </div>
                         <!-- END Number MODAL -->
-            <form id="assign_form" method="post" action="/account/0/numbers">
+            <form id="assign_form" method="post" action="{% if app.debug %}app_dev.php{% endif %}/account/0/numbers">
             <table class="table-bordered table-striped table-condensed cf">
                 <thead>
                     <tr>

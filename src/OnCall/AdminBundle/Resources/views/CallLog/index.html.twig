@@ -30,7 +30,7 @@
 // functions
 function campaign_set(campaign_id, adgroup_id, advert_id)
 {
-    var url = '/campaign/' + campaign_id + '/adgroups/dropdown';
+    var url = '{% if app.debug %}app_dev.php{% endif %}/campaign/' + campaign_id + '/adgroups/dropdown';
     $.get(url, function(data) {
         var options = '<option value=""></option>';
         for (var i = 0; i < data.length; i++)
@@ -47,7 +47,7 @@ function campaign_set(campaign_id, adgroup_id, advert_id)
 
 function adg_set(adgroup_id, advert_id)
 {
-    var url = '/adgroup/' + adgroup_id + '/adverts/dropdown';
+    var url = '{% if app.debug %}app_dev.php{% endif %}/adgroup/' + adgroup_id + '/adverts/dropdown';
     $.get(url, function(data) {
         var options = '<option value=""></option>';
         for (var i = 0; i < data.length; i++)
@@ -274,7 +274,7 @@ function get_filter_query_string()
 
 function log_csv()
 {
-    var url = '/client/{{ client.getID }}/call_log/csv' + get_filter_query_string();
+    var url = '{% if app.debug %}app_dev.php{% endif %}/client/{{ client.getID }}/call_log/csv' + get_filter_query_string();
     console.log(url);
     $(this).attr('href', url);
 }
@@ -282,7 +282,7 @@ function log_csv()
 function log_more()
 {
     var last_id = $('.log_row').last().data('id');
-    var url = '/client/{{ client.getID }}/call_log/more/' + last_id + get_filter_query_string();
+    var url = '{% if app.debug %}app_dev.php{% endif %}/client/{{ client.getID }}/call_log/more/' + last_id + get_filter_query_string();
 
     // console.log(url);
     $.get(url, function(data) {
@@ -573,7 +573,7 @@ jQuery(document).ready(function() {
                 <input id="filter_submit" type="submit" class="btn green" value="{% trans %}log.apply_filters{% endtrans %}" />
                 <!-- Kendrick: "Reset" should only show if a filter has been applied -->
                 {% if (filter.canReset) %}
-                <a href="/client/{{ client.getID }}/call_log" class="btn red">{% trans %}log.reset_filters{% endtrans %}</a>
+                <a href="{% if app.debug %}app_dev.php{% endif %}/client/{{ client.getID }}/call_log" class="btn red">{% trans %}log.reset_filters{% endtrans %}</a>
                 {% endif %}
                 </div>
             </form>

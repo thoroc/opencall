@@ -64,7 +64,7 @@ $(document).ready(function() {
                 <br />
                 <!-- BEGIN INLINE NOTIFICATIONS PORTLET-->
                 <!-- EDIT CLIENT MODAL -->
-                <form id="edit_form" method="post" action="/client/0">
+                <form id="edit_form" method="post" action="{% if app.debug %}app_dev.php{% endif %}/client/0">
                 <div id="editClient" class="modal hide fade" tabindex="-1" data-width="760">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -106,7 +106,7 @@ $(document).ready(function() {
                 </form>
                 <!-- End EDIT MODAL -->
                 <!-- DELETE Client MODAL -->
-                <form id="delete_form" method="post" action="/client/0/delete">
+                <form id="delete_form" method="post" action="{% if app.debug %}app_dev.php{% endif %}/client/0/delete">
                 <div id="deleteClient" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -158,16 +158,16 @@ $(document).ready(function() {
                 </div>
                 </form>
                 <!-- End ADD CLIENT MODAL -->
-                        
+
                 <div class="row-fluid">
                     {% for cli in clients %}
                     <div class="span3">
                         <div class="pricing-table">
                             <h3>
                                 {% if cli.isInactive %}
-                                    <i class="icon-remove-sign"></i> 
+                                    <i class="icon-remove-sign"></i>
                                 {% endif %}
-                                <a href="client/{{ cli.getID }}/campaigns">{{ cli.getName }}</a>
+                                <a href="{% if app.debug %}app_dev.php{% endif %}/client/{{ cli.getID }}/campaigns">{{ cli.getName }}</a>
                             </h3>
                             <ul>
                                 <li><i class="icon-angle-right"></i> {{ cli.getNumberCount }} {% trans %}client.numbers_assigned{% endtrans %}</li>
@@ -178,7 +178,7 @@ $(document).ready(function() {
                                 <!--<li><i class="icon-angle-right"></i> $XXX/month + $0 overage in Aug</li>-->
 
                             </ul>
-                            <a href="client/{{ cli.getID }}/campaigns" class="btn mini green" ><i class="icon-edit"></i> {% trans %}text.view{% endtrans %}</a>
+                            <a href="{% if app.debug %}app_dev.php{% endif %}/client/{{ cli.getID }}/campaigns" class="btn mini green" ><i class="icon-edit"></i> {% trans %}text.view{% endtrans %}</a>
                             <button data-toggle="modal" data-id="{{ cli.getID }}" href="#editClient" class="btn mini client_edit" ><i class="icon-edit"></i> {% trans %}text.edit{% endtrans %}</button>
                             <button data-toggle="modal" data-id="{{ cli.getID }}" href="#deleteClient" href="#" class="btn mini client_delete"><i class="icon-trash"></i> {% trans %}text.delete{% endtrans %}</button>
                         </div>
@@ -193,5 +193,5 @@ $(document).ready(function() {
 
     </div>
 </div>
-<!-- END PAGE CONTAINER--> 
+<!-- END PAGE CONTAINER-->
 {% endblock %}

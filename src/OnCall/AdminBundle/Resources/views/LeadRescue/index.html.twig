@@ -30,7 +30,7 @@
 // functions
 function campaign_set(campaign_id, adgroup_id, advert_id)
 {
-    var url = '/campaign/' + campaign_id + '/adgroups/dropdown';
+    var url = '{% if app.debug %}app_dev.php{% endif %}/campaign/' + campaign_id + '/adgroups/dropdown';
     $.get(url, function(data) {
         var options = '<option value=""></option>';
         for (var i = 0; i < data.length; i++)
@@ -47,7 +47,7 @@ function campaign_set(campaign_id, adgroup_id, advert_id)
 
 function adg_set(adgroup_id, advert_id)
 {
-    var url = '/adgroup/' + adgroup_id + '/adverts/dropdown';
+    var url = '{% if app.debug %}app_dev.php{% endif %}/adgroup/' + adgroup_id + '/adverts/dropdown';
     $.get(url, function(data) {
         var options = '<option value=""></option>';
         for (var i = 0; i < data.length; i++)
@@ -74,7 +74,7 @@ function alert_camp_set(campaign_id, adgroup_id, advert_id)
     if (campaign_id != null)
         $('#alert_campaign').val(campaign_id);
 
-    var url = '/campaign/' + campaign_id + '/adgroups/dropdown';
+    var url = '{% if app.debug %}app_dev.php{% endif %}/campaign/' + campaign_id + '/adgroups/dropdown';
     $.get(url, function(data) {
         var options = '<option value="">All</option>';
         for (var i = 0; i < data.length; i++)
@@ -99,7 +99,7 @@ function alert_adg_set(adgroup_id, advert_id)
     $('#alert_advert').val('');
     $('#ca_advert').addClass('hidden');
 
-    var url = '/adgroup/' + adgroup_id + '/adverts/dropdown';
+    var url = '{% if app.debug %}app_dev.php{% endif %}/adgroup/' + adgroup_id + '/adverts/dropdown';
     $.get(url, function(data) {
         var options = '<option value="">All</option>';
         for (var i = 0; i < data.length; i++)
@@ -244,9 +244,9 @@ function logtable_add(log)
 
     cols += '<td class="callLogDestination">';
     cols += '<strong>' + log.dialled_formatted + '</strong><br />';
-    cols += '<a href="client/' + log.client_id + '/campaigns">' + campaign_name(log.campaign_id) + '</a> &raquo; ';
-    cols += '<a href="campaign/' + log.campaign_id + '/adgroups">' + adgroup_name(log.adgroup_id) + '</a> &raquo; ';
-    cols += '<a href="adgroup/' + log.adgroup_id + '/adverts">' + advert_name(log.advert_id) + '</a>';
+    cols += '<a href="{% if app.debug %}app_dev.php{% endif %}/client/' + log.client_id + '/campaigns">' + campaign_name(log.campaign_id) + '</a> &raquo; ';
+    cols += '<a href="{% if app.debug %}app_dev.php{% endif %}/campaign/' + log.campaign_id + '/adgroups">' + adgroup_name(log.adgroup_id) + '</a> &raquo; ';
+    cols += '<a href="{% if app.debug %}app_dev.php{% endif %}/adgroup/' + log.adgroup_id + '/adverts">' + advert_name(log.advert_id) + '</a>';
     cols += '</td>';
 
     if (log.failed) {
@@ -326,7 +326,7 @@ function get_filter_query_string()
 
 function log_csv()
 {
-    var url = '/client/{{ client.getID }}/lead_rescue/csv' + get_filter_query_string();
+    var url = '{% if app.debug %}app_dev.php{% endif %}/client/{{ client.getID }}/lead_rescue/csv' + get_filter_query_string();
     console.log(url);
     $(this).attr('href', url);
 }
@@ -334,7 +334,7 @@ function log_csv()
 function log_more()
 {
     var last_id = $('.log_row').last().data('id');
-    var url = '/client/{{ client.getID }}/lead_rescue/more/' + last_id + get_filter_query_string();
+    var url = '{% if app.debug %}app_dev.php{% endif %}/client/{{ client.getID }}/lead_rescue/more/' + last_id + get_filter_query_string();
 
     // console.log(url);
     $.get(url, function(data) {
@@ -527,7 +527,7 @@ jQuery(document).ready(function() {
     <div class="modal-header">
         <h3>{% trans %}log.alert_button{% endtrans %}</h3>
     </div>
-    <form method="post" action="/client/{{ client.getID }}/alert">
+    <form method="post" action="{% if app.debug %}app_dev.php{% endif %}/client/{{ client.getID }}/alert">
         <div class="modal-body">
             <div class="row-fluid">
                 <div style="margin-bottom: 10px">
@@ -698,7 +698,7 @@ jQuery(document).ready(function() {
                 <input id="filter_submit" type="submit" class="btn green" value="{% trans %}log.apply_filters{% endtrans %}" />
                 <!-- Kendrick: "Reset" should only show if a filter has been applied -->
                 {% if (filter.canReset) %}
-                <a href="/client/{{ client.getID }}/lead_rescue" class="btn red">{% trans %}log.reset_filters{% endtrans %}</a>
+                <a href="{% if app.debug %}app_dev.php{% endif %}/client/{{ client.getID }}/lead_rescue" class="btn red">{% trans %}log.reset_filters{% endtrans %}</a>
                 {% endif %}
                 </div>
                 <div style="clear:both; margin:20px 0px 0px 4px;">

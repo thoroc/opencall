@@ -35,6 +35,7 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "cboden/Ratchet": "0.3.*",
         "react/zmq": "0.2.*",
+       "misd/phone-number-bundle": "~1.0",
         "elao/web-profiler-extra-bundle" : "dev-master",
         "leaseweb/version-information-bundle": "dev-master",
         "raulfraile/ladybug-bundle": "dev-master"

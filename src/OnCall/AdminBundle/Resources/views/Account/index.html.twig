@@ -114,12 +114,12 @@ $(document).ready(function() {
 
             <!-- BEGIN PAGE TITLE & BREADCRUMB-->
             <h3 class="page-title">
-                Account Management 
+                Account Management
             </h3>
                 {{ flash.display_flash_messages }}
 
                 <button class="btn green account_add" style="margin-bottom: 4px;"  data-toggle="modal" href="#addAccount"><i class="icon-plus"></i> Add New Account</button>
-                 
+
                 <div class="portlet-body no-more-tables">
                     <table class="table-bordered table-striped table-condensed cf">
                         <thead class="cf">
@@ -137,7 +137,7 @@ $(document).ready(function() {
                         <tbody>
                         {% for acc in accounts %}
                             <tr>
-                                <td data-title="Status" style="text-align: center;" valign="top"><i class="{{ acc.isEnabled ? 'icon-ok-sign' : 'icon-remove-sign' }}"></i></td>  
+                                <td data-title="Status" style="text-align: center;" valign="top"><i class="{{ acc.isEnabled ? 'icon-ok-sign' : 'icon-remove-sign' }}"></i></td>
                                 <td data-title="Business Details" valign="top">
                                     <strong>{{ acc.getBusinessName }}</strong><br />
                                     <small>
@@ -147,14 +147,14 @@ $(document).ready(function() {
                                     <strong>Phone:</strong> {{ acc.getPhone }}<br />
                                     <strong>Address:</strong> {{ acc.getAddress }}<br />
                                     <strong>Account Created:</strong> {{ acc.getDateCreateFormatted }}</small>
-                                </td>  
+                                </td>
                                 <td data-title="Billing Details" valign="top">
                                     <small>
                                         <strong>Contact: <a href="mailto:{{ acc.getBillEmail }}">{{ acc.getBillName }}</a></strong><br />
                                         <strong>Phone:</strong> {{ acc.getBillPhone }}<br />
                                         <strong>Address:</strong> {{ acc.getBillAddress }}
                                     </small>
-                                </td>  
+                                </td>
                                 <td data-title="Total Active Clients" valign="top">
                                     <small>
                                     {% for ac in aggr_count[acc.getID] %}
@@ -220,9 +220,9 @@ $(document).ready(function() {
                                     </small>
                                 </td>
                                 <td data-title="Action" valign="top">
-                                    <a href="/?_switch={{ acc.getUsername }}" data-toggle="modal" role="button" class="btn mini" ><i class="icon-key"></i> login as account</a>												
+                                    <a href="{% if app.debug %}app_dev.php{% endif %}/?_switch={{ acc.getUsername }}" data-toggle="modal" role="button" class="btn mini" ><i class="icon-key"></i> login as account</a>
                                     <button href="#editAccount" data-toggle="modal" data-id="{{ acc.getID }}" role="button" class="btn mini account_edit" ><i class="icon-edit"></i> edit</button>
-                                </td>   
+                                </td>
                             </tr>
                         {% endfor %}
 
@@ -230,14 +230,14 @@ $(document).ready(function() {
 
                         </tbody>
                     </table>
-                    
+
                     <!-- Add MODAL -->
                     <div id="addAccount" class="modal hide fade" tabindex="-1" data-width="760">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                             <h3>Add Client</h3>
                         </div>
-                        <form id="add_form" method="post" action="/account">
+                        <form id="add_form" method="post" action="{% if app.debug %}app_dev.php{% endif %}/account">
                         <div class="modal-body">
                             <div class="row-fluid">
                                 <div class="span6">
@@ -270,22 +270,22 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div>
-                
+
                         <div class="modal-footer">
                             <button type="button" data-dismiss="modal" class="btn">Cancel</button>
                             <input type="submit" class="btn green" value="Add Account" />
                         </div>
                         </form>
-                    </div>															
+                    </div>
                     <!-- End Add MODAL -->
-                    
+
                     <!-- Edit MODAL -->
                     <div id="editAccount" class="modal hide fade" tabindex="-1" data-width="760">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                             <h3>Edit Account</h3>
                         </div>
-                        <form id="edit_form" method="post" action="/account/0">
+                        <form id="edit_form" method="post" action="{% if app.debug %}app_dev.php{% endif %}/account/0">
                         <div class="modal-body">
                             <div class="row-fluid">
                                 <div class="span6">
@@ -315,18 +315,18 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div>
-                
+
                         <div class="modal-footer">
                             <button type="button" data-dismiss="modal" class="btn">Cancel</button>
                             <input type="submit" class="btn green" value="Save Changes" />
                         </div>
                         </form>
-                    </div>															
+                    </div>
                     <!-- End Edit MODAL -->
                 </div>
 
         </div>
     </div>
 </div>
-<!-- END PAGE CONTAINER--> 
+<!-- END PAGE CONTAINER-->
 {% endblock %}
