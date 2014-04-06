@@ -3,7 +3,7 @@
 namespace OnCall\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Plivo\NumberFormatter;
+use OnCall\PlivoBundle\NumberFormatter;
 
 /**
  * @ORM\Entity
@@ -64,61 +64,61 @@ class Advert extends Item
     }
 
     // begin setters
-    public function setAdGroup(AdGroup $adg)
+    public function setAdGroup( AdGroup $adg )
     {
         $this->adgroup = $adg;
         $this->adgroup_id = $adg->getID();
         return $this;
     }
 
-    public function setParent(AdGroup $adg)
+    public function setParent( AdGroup $adg )
     {
-        return $this->setAdGroup($adg);
+        return $this->setAdGroup( $adg );
     }
 
-    public function setNumber(Number $number = null)
+    public function setNumber( Number $number = null )
     {
         $this->number = $number;
         return $this;
     }
 
-    public function setDestination($dest)
+    public function setDestination( $dest )
     {
         $this->destination = $dest;
         return $this;
     }
 
-    public function setXMLReplace($xml)
+    public function setXMLReplace( $xml )
     {
         $this->xml_replace = $xml;
         return $this;
     }
 
-    public function setXMLOverride($override = true)
+    public function setXMLOverride( $override = true )
     {
         $this->xml_override = $override;
         return $this;
     }
 
-    public function setRecord($record = true)
+    public function setRecord( $record = true )
     {
         $this->record = $record;
         return $this;
     }
 
-    public function setSpeak($speak = true)
+    public function setSpeak( $speak = true )
     {
         $this->speak = $speak;
         return $this;
     }
 
-    public function setSpeakMessage($msg)
+    public function setSpeakMessage( $msg )
     {
         $this->speak_message = $msg;
         return $this;
     }
-    // end setters
 
+    // end setters
     // begin getters
     public function getAdGroup()
     {
@@ -137,16 +137,14 @@ class Advert extends Item
 
     public function getNumberFormatted()
     {
-        if ($this->number == null)
-            return '';
+        if( $this->number == null ) return '';
 
         return $this->number->getIDFormatted();
     }
 
     public function getNumberRaw()
     {
-        if ($this->number == null)
-            return '';
+        if( $this->number == null ) return '';
 
         return $this->number->getID();
     }
@@ -158,11 +156,10 @@ class Advert extends Item
 
     public function getDestinationFormatted()
     {
-        if ($this->destination == null)
-            return '';
+        if( $this->destination == null ) return '';
 
         $nf = new NumberFormatter();
-        return $nf->format($this->destination);
+        return $nf->format( $this->destination );
     }
 
     public function getXMLReplace()
@@ -172,8 +169,7 @@ class Advert extends Item
 
     public function hasXMLReplace()
     {
-        if (strlen(trim($this->xml_replace)) > 0)
-            return true;
+        if( strlen( trim( $this->xml_replace ) ) > 0 ) return true;
         return false;
     }
 
@@ -196,6 +192,7 @@ class Advert extends Item
     {
         return $this->speak_message;
     }
+
     // end getters
 
     public function getData()

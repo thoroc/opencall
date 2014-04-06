@@ -4,7 +4,7 @@ namespace LiveLog;
 
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
-use Plivo\Log\Repository as LogRepo;
+use OnCall\PlivoBundle\Log\Repository as LogRepo;
 
 class Pusher implements WampServerInterface
 {

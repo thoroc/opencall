@@ -4,7 +4,7 @@ namespace OnCall\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
-use Plivo\NumberFormatter;
+use OnCall\PlivoBundle\NumberFormatter;
 
 /**
  * @ORM\Entity(repositoryClass="OnCall\AdminBundle\Entity\Repositories\CallLogRepository")

@@ -6,11 +6,11 @@ use OnCall\AdminBundle\Model\Controller;
 use OnCall\AdminBundle\Menu\MenuHandler;
 use OnCall\AdminBundle\Model\AggregateFilter;
 use OnCall\AdminBundle\Model\Timezone;
-use Plivo\HangupCause;
-use Plivo\DurationModifier;
-use Plivo\Log\Filter as LogFilter;
-use Plivo\Log\Entry as LogEntry;
-use Plivo\Log\Repository as LogRepo;
+use OnCall\PlivoBundle\Factory\HangupCause;
+use OnCall\PlivoBundle\Factory\DurationModifier;
+use OnCall\PlivoBundle\Log\Filter as LogFilter;
+use OnCall\PlivoBundle\Log\Entry as LogEntry;
+use OnCall\PlivoBundle\Log\Repository as LogRepo;
 use Predis\Client as PredisClient;
 
 class LeadRescueController extends Controller

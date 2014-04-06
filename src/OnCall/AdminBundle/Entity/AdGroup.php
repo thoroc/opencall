@@ -27,19 +27,19 @@ class AdGroup extends Item
     protected $adverts;
 
     // begin setters
-    public function setCampaign(Campaign $camp)
+    public function setCampaign( Campaign $camp )
     {
         $this->campaign = $camp;
         $this->campaign_id = $camp->getID();
         return $this;
     }
 
-    public function setParent(Campaign $camp)
+    public function setParent( Campaign $camp )
     {
-        return $this->setCampaign($camp);
+        return $this->setCampaign( $camp );
     }
-    // end setters
 
+    // end setters
     // begin getters
     public function getCampaign()
     {

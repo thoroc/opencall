@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Misd\PhoneNumberBundle\MisdPhoneNumberBundle(),
 
             new OnCall\AdminBundle\OnCallAdminBundle(),
+            new OnCall\PlivoBundle\OnCallPlivoBundle(),
             // new OnCall\Bundle\UserBundle\OnCallUserBundle(),
         );
 

@@ -3,7 +3,7 @@
 namespace OnCall\AdminBundle\Entity\Repositories;
 
 use Doctrine\ORM\EntityRepository;
-use Plivo\Log\Filter;
+use OnCall\PlivoBundle\Log\Filter;
 
 class CallLogRepository extends EntityRepository
 {

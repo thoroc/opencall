@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use OnCall\AdminBundle\Entity\CallLog;
@@ -9,10 +8,10 @@ $data = array(
     'logentry' => $log,
 );
 
-$json_data = json_encode($data);
+$json_data = json_encode( $data );
 
 $context = new ZMQContext();
-$socket = $context->getSocket(ZMQ::SOCKET_PUSH, 'pusher');
-$socket->connect('tcp://localhost:5555');
-$socket->send($json_data);
+$socket = $context->getSocket( ZMQ::SOCKET_PUSH, 'pusher' );
+$socket->connect( 'tcp://localhost:5555' );
+$socket->send( $json_data );
 

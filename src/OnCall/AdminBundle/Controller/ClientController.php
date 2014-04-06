@@ -8,8 +8,8 @@ use OnCall\AdminBundle\Menu\MenuHandler;
 use OnCall\AdminBundle\Model\Timezone;
 use OnCall\AdminBundle\Entity\Client;
 use OnCall\AdminBundle\Model\ClientStatus;
-use Plivo\AccountCounter\Repository as ACRepo;
-use Plivo\AccountCounter\Entry as ACEntry;
+use OnCall\PlivoBundle\AccountCounter\Repository as ACRepo;
+use OnCall\PlivoBundle\AccountCounter\Entry as ACEntry;
 use DateTime;
 
 class ClientController extends Controller

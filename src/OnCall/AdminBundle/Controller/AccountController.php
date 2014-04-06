@@ -2,15 +2,15 @@
 
 namespace OnCall\AdminBundle\Controller;
 
-use OnCall\AdminBundle\Menu\MenuHandler;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\DBAL\DBALException;
+use Doctrine\ORM\ORMException;
+use OnCall\AdminBundle\Menu\MenuHandler;
 use OnCall\AdminBundle\Entity\User;
 use OnCall\AdminBundle\Entity\Client;
 use OnCall\AdminBundle\Model\Controller;
-use Doctrine\DBAL\DBALException;
-use Doctrine\ORM\ORMException;
-use Plivo\AccountCounter\Repository as ACRepo;
-use Plivo\AccountCounter\Entry as ACEntry;
+use OnCall\PlivoBundle\AccountCounter\Repository as ACRepo;
+use OnCall\PlivoBundle\AccountCounter\Entry as ACEntry;
 use DateTime;
 
 class AccountController extends Controller

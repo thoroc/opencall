@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Ratchet\Server\IoServer;
@@ -10,16 +9,17 @@ use React\Socket\Server;
 use React\EventLoop\Factory as EventLoopFactory;
 use React\ZMQ\Context;
 use LiveLog\Pusher;
-use Plivo\Log\Repository as LogRepo;
+use OnCall\PlivoBundle\Log\Repository as LogRepo;
 
 $pid = pcntl_fork();
 
-if ($pid == -11)
+if( $pid == -11 )
 {
     return 1;
 }
-else if ($pid)
+else if( $pid )
 {
+
 }
 else
 {
@@ -29,25 +29,24 @@ else
     $dsn = 'mysql:host=db.oncall;dbname=oncall';
     $user = 'webuser';
     $pass = 'lks8jw23';
-    $pdo = new PDO($dsn, $user, $pass);
+    $pdo = new PDO( $dsn, $user, $pass );
 
     $loop = EventLoopFactory::create();
-    $pusher = new Pusher(new LogRepo($pdo));
+    $pusher = new Pusher( new LogRepo( $pdo ) );
 
-    $context = new Context($loop);
-    $pull = $context->getSocket(ZMQ::SOCKET_PULL);
-    $pull->bind('tcp://127.0.0.1:5555');
-    $pull->on('message', array($pusher, 'onLogEntry'));
+    $context = new Context( $loop );
+    $pull = $context->getSocket( ZMQ::SOCKET_PULL );
+    $pull->bind( 'tcp://127.0.0.1:5555' );
+    $pull->on( 'message', array( $pusher, 'onLogEntry' ) );
 
-    $websock = new Server($loop);
-    $websock->listen(8080, '0.0.0.0');
+    $websock = new Server( $loop );
+    $websock->listen( 8080, '0.0.0.0' );
     $server = new IoServer(
-        new HttpServer(
+            new HttpServer(
             new WsServer(
-                new WampServer($pusher)
+            new WampServer( $pusher )
             )
-        ),
-        $websock
+            ), $websock
     );
 
     $loop->run();
