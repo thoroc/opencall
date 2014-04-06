@@ -30,3 +30,24 @@ assetic:
 #swiftmailer:
 #    delivery_address: me@example.com
 #
+
+web_profiler_extra:
+    routing:
+        enabled:        true
+        display_in_wdt: true
+    container:
+        enabled:        true
+        display_in_wdt: true
+    assetic:
+        enabled:        true
+        display_in_wdt: true
+    twig:
+        enabled:        true
+        display_in_wdt: true
+
+raul_fraile_ladybug:
+    theme: modern # select the theme: base, modern or custom themes
+    expanded: false # true to expand all the variables tree by default
+    silenced: false # true to ignore all ladybug calls
+    array_max_nesting_level: 10
+    object_max_nesting_level: 8
