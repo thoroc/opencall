@@ -4,6 +4,7 @@ namespace OnCall\AdminBundle\Menu;
 
 class MenuHandler
 {
+    // user Symfony Router if possible
     static public function getMenu($role_hash, $active = null, $client_id = null, $params = array())
     {
         $menu_group = new MenuGroup();
@@ -53,31 +54,32 @@ class MenuHandler
                     $camp_params['date_to'] = $params['date_to'];
                 }
 
-                $menu_group->addItem(new MenuItem(
+                $menu_group->addItem( new MenuItem(
                     'campaigns',
                     'menu.campaigns',
-                    '/client/' . $client_id . '/campaigns?' . http_build_query($camp_params),
+                    '/client/' . $client_id . '/campaigns?' . http_build_query( $camp_params ),
                     'icon-signal'
                 ));
-                $menu_group->addItem(new MenuItem(
+                $menu_group->addItem( new MenuItem(
                     'call_log',
                     'menu.call_log',
-                    '/client/' . $client_id . '/call_log?' . http_build_query($call_log_params),
+                    '/client/' . $client_id . '/call_log?' . http_build_query( $call_log_params ),
                     'icon-phone'
                 ));
-                $menu_group->addItem(new MenuItem(
+                $menu_group->addItem( new MenuItem(
                     'lead_rescue',
                     'menu.lead_rescue',
-                    '/client/' . $client_id . '/lead_rescue?' . http_build_query($call_log_params),
+                    '/client/' . $client_id . '/lead_rescue?' . http_build_query($call_log_params ),
+//                    '/client/' . $client_id . '/lead_rescue?' . http_build_query($call_log_params ),
                     'icon-star'
                 ));
-                $menu_group->addItem(new MenuItem(
+                $menu_group->addItem( new MenuItem(
                     'number',
                     'menu.number_management',
                     '/client/' . $client_id . '/numbers',
                     'icon-th'
                 ));
-                $menu_group->addItem(new MenuItem(
+                $menu_group->addItem( new MenuItem(
                     'quotas',
                     'Usage & Billing',
                     '/client/' . $client_id . '/billing',

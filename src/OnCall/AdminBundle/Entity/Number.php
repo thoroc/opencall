@@ -8,7 +8,7 @@ use OnCall\AdminBundle\Model\NumberType;
 use Plivo\NumberFormatter;
 
 /**
- * @ORM\Entity(repositoryClass="OnCall\AdminBundle\Entity\Repositories\Counter")
+ * @ORM\Entity(repositoryClass="OnCall\AdminBundle\Entity\Repositories\NumberRepository")
  * @ORM\Table(name="Number")
  */
 class Number

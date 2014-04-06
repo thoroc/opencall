@@ -4,7 +4,7 @@
     {% else %}
         <li>
     {% endif %}
-        <a href="{{ menu_item.getURL() }}">
+        <a href="{% if app.debug %}app_dev.php{% endif %}{{ menu_item.getURL() }}">
             <i class="{{ menu_item.getIcon() }}"></i>
             <span class="title">{{ menu_item.getName()|trans }}</span>
         </a>

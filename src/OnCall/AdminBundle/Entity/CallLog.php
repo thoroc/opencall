@@ -51,7 +51,7 @@ class CallLog
     protected $date_start;
 
     /**
-     * @ORM\Column(name="data_end", type="datetime")
+     * @ORM\Column(name="date_end", type="datetime")
      */
     protected $date_end;
 
@@ -91,9 +91,29 @@ class CallLog
     protected $b_hangup_cause;
 
     /**
-     * @ORM\Column(tname="audio_record", ype="string", length=100)
+     * @ORM\Column(name="audio_record", type="string", length=100)
      */
     protected $audio_record;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $advert_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $adgroup_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $campaign_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $client_id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Advert")
