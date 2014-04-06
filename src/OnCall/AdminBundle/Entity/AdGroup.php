@@ -5,6 +5,8 @@ namespace OnCall\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Entity(repositoryClass="OnCall\AdminBundle\Entity\Repositories\AdGroupRepository")
+ * @ORM\Table(name="AdGroup")
  * @ORM\Entity
  */
 class AdGroup extends Item

@@ -6,7 +6,7 @@ use OnCall\AdminBundle\Entity\CallLog;
 
 $data = array(
     'topic' => 'client:20',
-    'logentry' => $log;
+    'logentry' => $log,
 );
 
 $json_data = json_encode($data);

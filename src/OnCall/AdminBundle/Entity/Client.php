@@ -5,7 +5,8 @@ namespace OnCall\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="OnCall\AdminBundle\Entity\Repositories\Client")
+ * @ORM\Entity(repositoryClass="OnCall\AdminBundle\Entity\Repositories\ClientRepository")
+ * @ORM\Table(name="Client")
  */
 class Client extends Item
 {

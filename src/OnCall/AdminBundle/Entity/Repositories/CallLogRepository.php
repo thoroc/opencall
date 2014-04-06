@@ -1,11 +1,11 @@
 <?php
 
-namespace OnCall\AdminBundle\Repositories;
+namespace OnCall\AdminBundle\Entity\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 use Plivo\Log\Filter;
 
-class CallLog extends EntityRepository
+class CallLogRepository extends EntityRepository
 {
     protected function filterItem(Filter $filter, $qb)
     {

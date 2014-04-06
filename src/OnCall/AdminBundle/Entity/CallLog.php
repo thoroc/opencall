@@ -7,7 +7,8 @@ use DateTime;
 use Plivo\NumberFormatter;
 
 /**
- * @ORM\Entity(repositoryClass="OnCall\AdminBundle\Entity\Repositories\CallLog")
+ * @ORM\Entity(repositoryClass="OnCall\AdminBundle\Entity\Repositories\CallLogRepository")
+ * @ORM\Table(name="CallLog")
  */
 class CallLog
 {
@@ -19,99 +20,80 @@ class CallLog
     protected $id;
 
     /*
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(name="" type="datetime")
+     * @ORM\Column(name="date_in", type="datetime")
      */
     protected $date_in;
 
     /**
-     * @ORM\Column(type="string", length=40)
+     * @ORM\Column(name="call_id", type="string", length=40)
      */
     protected $call_id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="origin_number", type="integer")
      */
     protected $origin_number;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="dialled_number", type="integer")
      */
     protected $dialled_number;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="destination_number", type="integer")
      */
     protected $destination_number;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(name="date_start", type="datetime")
      */
     protected $date_start;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(name="data_end", type="datetime")
      */
     protected $date_end;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="duration", type="integer")
      */
     protected $duration;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="bill_duration", type="integer")
      */
     protected $bill_duration;
 
     /**
-     * @ORM\Column(type="decimal", precision=8, scale=5)
+     * @ORM\Column(name="bill_rate", type="decimal", precision=8, scale=5)
      */
     protected $bill_rate;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(name="status", type="string", length=20)
      */
     protected $status;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(name="hangup_cause", type="string", length=100)
      */
     protected $hangup_cause;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(name="b_status", type="string", length=20)
      */
     protected $b_status;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(name="b_hangup_cause", type="string", length=100)
      */
     protected $b_hangup_cause;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(tname="audio_record", ype="string", length=100)
      */
     protected $audio_record;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $advert_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $adgroup_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $campaign_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $client_id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Advert")

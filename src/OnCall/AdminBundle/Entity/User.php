@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="OnCall\AdminBundle\Entity\Repositories\UserRepository")
+ * @ORM\Table(name="User")
  */
 class User extends BaseUser
 {
@@ -19,57 +20,57 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(name="multi_client", type="boolean")
      */
     protected $multi_client;
 
     /**
-     * @ORM\Column(type="string", length=80)
+     * @ORM\Column(name="name", type="string", length=80)
      */
     protected $name;
 
     /**
-     * @ORM\Column(type="string", length=80)
+     * @ORM\Column(name="business_name", type="string", length=80)
      */
     protected $business_name;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(name="phone", type="string", length=30)
      */
     protected $phone;
 
     /**
-     * @ORM\Column(type="string", length=120)
+     * @ORM\Column(name="address", type="string", length=120)
      */
     protected $address;
 
     /**
-     * @ORM\Column(type="string", length=80)
+     * @ORM\Column(name="bill_business_name", type="string", length=80)
      */
     protected $bill_business_name;
 
     /**
-     * @ORM\Column(type="string", length=80)
+     * @ORM\Column(name="bill_name", type="string", length=80)
      */
     protected $bill_name;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(name="bill_email", type="string", length=50)
      */
     protected $bill_email;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(name="bill_phone", type="string", length=50)
      */
     protected $bill_phone;
 
     /**
-     * @ORM\Column(type="string", length=120)
+     * @ORM\Column(name="bill_address", type="string", length=120)
      */
     protected $bill_address;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(name="date_create", type="datetime")
      */
     protected $date_create;
 
@@ -77,7 +78,6 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Client", mappedBy="user")
      */
     protected $clients;
-
 
     public function __construct()
     {
@@ -141,7 +141,7 @@ class User extends BaseUser
         $this->bill_phone = $phone;
         return $this;
     }
-    
+
     public function setBillAddress($address)
     {
         $this->bill_address = $address;

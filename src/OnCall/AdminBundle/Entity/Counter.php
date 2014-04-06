@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 
 /**
- * @ORM\Entity(repositoryClass="OnCall\AdminBundle\Entity\Repositories\Counter")
+ * @ORM\Entity(repositoryClass="OnCall\AdminBundle\Entity\Repositories\CounterRepository")
  */
 abstract class Counter
 {

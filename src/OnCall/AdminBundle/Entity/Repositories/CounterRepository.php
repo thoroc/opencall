@@ -1,6 +1,6 @@
 <?php
 
-namespace OnCall\AdminBundle\Repositories;
+namespace OnCall\AdminBundle\Entity\Repositories;
 
 use DateTime;
 use DatePeriod;
@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityRepository;
 use OnCall\AdminBundle\Model\ItemAggregate;
 use OnCall\AdminBundle\Model\AggregateFilter;
 
-class Counter extends EntityRepository
+class CounterRepository extends EntityRepository
 {
     protected function getDQLPrefix($item_type, $child_type)
     {
@@ -139,7 +139,7 @@ class Counter extends EntityRepository
         $offset = floor($filter->getClientTimezone()->getOffset($date_from) / 3600);
         error_log('offset - ' . $offset);
 
-        // if daily, check if date is a single date... 
+        // if daily, check if date is a single date...
         // if so, set date_from to date - 1 day
         //        and date_to to date + 1 day
         // for highcharts to display properly
@@ -172,7 +172,7 @@ class Counter extends EntityRepository
             // make sure all days have a value
             $period = new DatePeriod(
                 $date_from,
-                new DateInterval('P1D'), 
+                new DateInterval('P1D'),
                 $date_to
             );
             foreach ($period as $day)

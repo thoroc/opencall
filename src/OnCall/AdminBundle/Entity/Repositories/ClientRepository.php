@@ -1,11 +1,11 @@
 <?php
 
-namespace OnCall\AdminBundle\Repositories;
+namespace OnCall\AdminBundle\Entity\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
 
-class Client extends EntityRepository
+class ClientRepository extends EntityRepository
 {
     public function findFirst($user_id)
     {

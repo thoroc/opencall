@@ -193,24 +193,24 @@ abstract class ItemController extends Controller
         $params = $this->getRequest()->query->all();
 
         return array(
-            'user' => $user,
-            'sidebar_menu' => MenuHandler::getMenu($role_hash, 'campaigns', $client_id, $params),
-            'parent' => $fetch_res['parent'],
-            'agg_parent' => $agg['parent'],
-            'agg_table' => $agg['table'],
-            // 'agg_filter' => $this->getFilter($this->agg_type['parent'], $id),
-            'agg_filter' => $agg_filter,
-            'daily' => $agg['daily'],
-            'hourly' => $agg['hourly'],
-            'children' => $fetch_res['children'],
-            'top_color' => $this->top_color,
-            'name' => $this->name,
-            'url_child' => $this->url_child,
-            'params_child' => $params_child,
-            'client_id' => $this->getClientID(),
-            'log_url' => $this->log_url,
-            'filters' => $agg['filters'],
-            'child_filter_var' => $this->child_filter_var
+            'user'              => $user,
+            'sidebar_menu'      => MenuHandler::getMenu($role_hash, 'campaigns', $client_id, $params),
+            'parent'            => $fetch_res['parent'],
+            'agg_parent'        => $agg['parent'],
+            'agg_table'         => $agg['table'],
+            // 'agg_filter'       => $this->getFilter($this->agg_type['parent'], $id),
+            'agg_filter'        => $agg_filter,
+            'daily'             => $agg['daily'],
+            'hourly'            => $agg['hourly'],
+            'children'          => $fetch_res['children'],
+            'top_color'         => $this->top_color,
+            'name'              => $this->name,
+            'url_child'         => $this->url_child,
+            'params_child'      => $params_child,
+            'client_id'         => $this->getClientID(),
+            'log_url'           => $this->log_url,
+            'filters'           => $agg['filters'],
+            'child_filter_var'  => $this->child_filter_var
         );
     }
 
@@ -297,7 +297,7 @@ abstract class ItemController extends Controller
         $dfilter = $this->getFilter($this->agg_type['daily'], $pid);
         $hfilter = $this->getFilter($this->agg_type['hourly'], $pid);
 
-        // get aggregate data for parent 
+        // get aggregate data for parent
         $agg_parent = $count_repo->findItemAggregate($filter);
         $agg_table = $count_repo->findItemAggregate($tfilter, $child_ids);
         $agg_daily = $count_repo->findChartAggregate($dfilter);
@@ -308,16 +308,15 @@ abstract class ItemController extends Controller
         $hourly = $this->separateChartData($agg_hourly);
 
         return array(
-            'parent' => $agg_parent,
-            'table' => $agg_table,
-            'daily' => $daily,
-            'hourly' => $hourly,
-            'filters' => array(
-                'parent' => $filter,
-                'table' => $tfilter,
-                'daily' => $dfilter,
-                'hourly' => $hfilter
-            )
-        );
+            'parent'    => $agg_parent,
+            'table'     => $agg_table,
+            'daily'     => $daily,
+            'hourly'    => $hourly,
+            'filters'   => array(
+                'parent'    => $filter,
+                'table'     => $tfilter,
+                'daily'     => $dfilter,
+                'hourly'    => $hfilter
+        ));
     }
 }
